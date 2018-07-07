@@ -80,10 +80,25 @@ public class Note {
 		this.createdAt = createdAt;
 	}
 	
-	/* Override the toString() method */
-
 	@Override
-	public String toString() {
-		return noteId+" "+noteTitle+" "+noteContent+ " "+noteStatus;
+	public boolean equals (Object o) {
+	    if (!(o instanceof Note)) {
+	        return false;
+	    }
+	    Note note = (Note)o;
+	    return getNoteId()==note.getNoteId() &&
+	           getNoteTitle().equals(note.getNoteTitle()) &&
+	           getNoteContent().equals(note.getNoteContent())&&
+	           getNoteStatus().equals(note.getNoteStatus());
+	}
+	
+	@Override
+	public int hashCode() {
+	    final int prime = 31;
+	    int result=1;
+	    result = prime * result + Integer.toString(getNoteId()).hashCode();
+	    result = prime * result + getNoteTitle().hashCode();
+	    result = prime * result + getNoteContent().hashCode();
+	    return result;
 	}
 }

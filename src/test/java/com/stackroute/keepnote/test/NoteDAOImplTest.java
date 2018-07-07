@@ -27,7 +27,6 @@ public class NoteDAOImplTest {
 
 	@Autowired
 	private SessionFactory sessionFactory;
-
 	private NoteDAO noteDAO;
 	private Note note;
 

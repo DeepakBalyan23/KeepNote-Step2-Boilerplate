@@ -9,19 +9,18 @@ import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatche
  * class, we can define the Configuration classes and root mapping so that our application can gets
  * into spring.
  */
-
 public class WebAppInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
-
+	
 	@Override
 	protected Class<?>[] getRootConfigClasses() {
 	
-		return new Class[] {};
+		return new Class[] {ApplicationContextConfig.class};
 	}
 
 	@Override
 	protected Class<?>[] getServletConfigClasses() {
 	
-		return new Class[] {};
+		return new Class[] {WebMvcConfig.class};
 	}
 
 	@Override

@@ -2,60 +2,88 @@ package com.stackroute.keepnote.model;
 
 import java.time.LocalDateTime;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
 /*
  * The class "Note" will be acting as the data model for the note Table in the database. Please
  * note that this class is annotated with @Entity annotation. Hibernate will scan all package for 
  * any Java objects annotated with the @Entity annotation. If it finds any, then it will begin the 
  * process of looking through that particular Java object to recreate it as a table in your database.
  */
-
+@Entity
 public class Note {
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private int noteId;
+	private String noteTitle;
+	private String noteContent;
+	private String noteStatus;
+	private LocalDateTime createdAt;
+
+
+
+	/* All the getters/setters definition should be implemented here */
 	public Note() {
-
+		
 	}
-
-	public Note(int i, String string, String string2, String string3, LocalDateTime localDate) {
+	
+	public Note(int noteId, String noteTitle, String noteContent, String noteStatus, LocalDateTime createdAt) {
+		super();
+		this.noteId = noteId;
+		this.noteTitle = noteTitle;
+		this.noteContent = noteContent;
+		this.noteStatus = noteStatus;
+		this.createdAt = createdAt;
 	}
 
 	public int getNoteId() {
+		return noteId;
+	}
 
-		return 0;
+	public void setNoteId(int noteId) {
+		this.noteId = noteId;
 	}
 
 	public String getNoteTitle() {
+		return noteTitle;
+	}
 
-		return null;
+	public void setNoteTitle(String noteTitle) {
+		this.noteTitle = noteTitle;
 	}
 
 	public String getNoteContent() {
+		return noteContent;
+	}
 
-		return null;
+	public void setNoteContent(String noteContext) {
+		this.noteContent = noteContext;
 	}
 
 	public String getNoteStatus() {
-
-		return null;
+		return noteStatus;
 	}
 
-	public void setNoteId(int parseInt) {
-
+	public void setNoteStatus(String noteStatus) {
+		this.noteStatus = noteStatus;
 	}
 
-	public void setNoteTitle(String parameter) {
-
+	public LocalDateTime getCreatedAt() {
+		return createdAt;
 	}
 
-	public void setNoteContent(String parameter) {
-
+	public void setCreatedAt(LocalDateTime createdAt) {
+		this.createdAt = createdAt;
 	}
+	
+	/* Override the toString() method */
 
-	public void setNoteStatus(String parameter) {
-
+	@Override
+	public String toString() {
+		return noteId+" "+noteTitle+" "+noteContent+ " "+noteStatus;
 	}
-
-	public void setCreatedAt(LocalDateTime now) {
-
-	}
-
 }

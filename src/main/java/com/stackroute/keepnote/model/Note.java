@@ -2,6 +2,7 @@ package com.stackroute.keepnote.model;
 
 import java.time.LocalDateTime;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -19,8 +20,11 @@ public class Note {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int noteId;
+	 @Column(nullable = false)
 	private String noteTitle;
+	 @Column(nullable = false)
 	private String noteContent;
+	 @Column(nullable = false)
 	private String noteStatus;
 	private LocalDateTime createdAt;
 

@@ -78,7 +78,7 @@ public class NoteDAOImpl implements NoteDAO {
 	 * order(showing latest note first)
 	 */
 	public List<Note> getAllNotes() {
-		String hql = "from Note";
+		String hql = "FROM Note note ORDER BY note.createdAt DESC";
 		Query query = getSessionFactory().openSession().createQuery(hql);
 		return query.getResultList();
 

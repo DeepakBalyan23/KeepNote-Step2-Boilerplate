@@ -72,7 +72,7 @@ public class NoteController {
 		} else {
 			noteDao.saveNote(note);
 			modelMap.addAttribute("noteList", noteDao.getAllNotes());
-			return "index";
+			return "redirect:/";
 		}
 		
 	}
@@ -86,7 +86,7 @@ public class NoteController {
 	public String deleteNote(ModelMap modelMap, @RequestParam int noteId) {
 		noteDao.deleteNote(noteId);
 		modelMap.addAttribute("noteList", noteDao.getAllNotes());
-		return "index";
+		return "redirect:/";
 	}
 	
 	@RequestMapping("/update")
@@ -99,7 +99,7 @@ public class NoteController {
 		note.setCreatedAt(LocalDateTime.now());
 		noteDao.UpdateNote(note);
 		modelMap.addAttribute("noteList", noteDao.getAllNotes());
-		return "index";
+		return "redirect:/";
 	}
 
 }

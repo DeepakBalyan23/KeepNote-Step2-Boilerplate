@@ -3,12 +3,8 @@ package com.stackroute.keepnote.controller;
 import java.time.LocalDateTime;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -71,11 +67,12 @@ public class NoteController {
 		note.setCreatedAt(LocalDateTime.now());
 		if(noteTitle.isEmpty() || noteContent.isEmpty() || noteStatus.isEmpty()){
 			modelMap.addAttribute("errorMessage", "No fields can be empty");
+			modelMap.addAttribute("noteList", noteDao.getAllNotes());
 			return "index";
 		} else {
 			noteDao.saveNote(note);
 			modelMap.addAttribute("noteList", noteDao.getAllNotes());
-			return "redirect:/";
+			return "index";
 		}
 		
 	}
@@ -89,7 +86,7 @@ public class NoteController {
 	public String deleteNote(ModelMap modelMap, @RequestParam int noteId) {
 		noteDao.deleteNote(noteId);
 		modelMap.addAttribute("noteList", noteDao.getAllNotes());
-		return "redirect:/";
+		return "index";
 	}
 	
 	@RequestMapping("/update")
@@ -102,7 +99,7 @@ public class NoteController {
 		note.setCreatedAt(LocalDateTime.now());
 		noteDao.UpdateNote(note);
 		modelMap.addAttribute("noteList", noteDao.getAllNotes());
-		return "redirect:/";
+		return "index";
 	}
 
 }

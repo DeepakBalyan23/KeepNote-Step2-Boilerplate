@@ -1,10 +1,10 @@
 package com.stackroute.keepnote.dao;
 
+
 import java.util.List;
 
 import javax.transaction.Transactional;
 
-import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import javax.persistence.Query;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,11 +48,8 @@ public class NoteDAOImpl implements NoteDAO {
 	 */
 
 	public boolean saveNote(Note note) {
-		Session session = sessionFactory.openSession();
-		session.beginTransaction();
-		session.save(note);
-		session.getTransaction().commit();
-		session.close();
+		sessionFactory.getCurrentSession().save(note);
+		sessionFactory.getCurrentSession().flush();
 		return true;
 	}
 
@@ -64,11 +61,8 @@ public class NoteDAOImpl implements NoteDAO {
 		if(getNoteById(noteId)==null) {
 			return false;
 		} else {
-			Session session = sessionFactory.openSession();
-			session.beginTransaction();
-			session.delete(getNoteById(noteId));
-			session.getTransaction().commit();
-			session.close();
+			sessionFactory.getCurrentSession().delete(getNoteById(noteId));
+			sessionFactory.getCurrentSession().flush();
 			return true;
 		}
 	}
@@ -77,6 +71,7 @@ public class NoteDAOImpl implements NoteDAO {
 	 * retrieve all existing notes sorted by created Date in descending
 	 * order(showing latest note first)
 	 */
+	@SuppressWarnings("unchecked")
 	public List<Note> getAllNotes() {
 		String hql = "FROM Note note ORDER BY note.createdAt DESC";
 		Query query = getSessionFactory().openSession().createQuery(hql);
@@ -88,11 +83,8 @@ public class NoteDAOImpl implements NoteDAO {
 	 * retrieve specific note from the database(note) table
 	 */
 	public Note getNoteById(int noteId) {
-		Session session = sessionFactory.openSession();
-		session.beginTransaction();
-		Note note = (Note)session.get(Note.class, noteId);
-		session.getTransaction().commit();
-		session.close();
+		Note note = (Note)sessionFactory.getCurrentSession().get(Note.class, noteId);
+		sessionFactory.getCurrentSession().flush();
 		return note;
 	}
 
@@ -102,11 +94,9 @@ public class NoteDAOImpl implements NoteDAO {
 		if(getNoteById(note.getNoteId())==null) {
 			return false;
 		} else {
-			Session session = sessionFactory.openSession();
-			session.beginTransaction();
-			session.update(note);
-			session.getTransaction().commit();
-			session.close();
+			sessionFactory.getCurrentSession().clear();
+			sessionFactory.getCurrentSession().update(note);
+			sessionFactory.getCurrentSession().flush();
 			return true;
 		}
 	}

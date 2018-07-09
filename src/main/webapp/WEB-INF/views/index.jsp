@@ -10,16 +10,16 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>KeepNote</title>
 <!-- Latest compiled and minified CSS -->
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
 
 <!-- jQuery library -->
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<!-- Popper JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
 
 <!-- Latest compiled JavaScript -->
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
 </head>
 <body>
 	<!-- Create a form which will have text boxes for Note ID, title, content and status along with a Send 
@@ -33,7 +33,7 @@
 			<br /> <label>Note Status:</label> <select name="noteStatus">
 				<option value="active">active</option>
 				<option value="inactive">inactive</option>
-			</select> <br />
+			</select> <br /><br />
 			<button type="submit" class="btn btn-primary">Submit</button>
 		</form>
 	</div>
@@ -69,7 +69,7 @@
 						<form action='delete' method="post">
 							<input type="hidden" id="noteId" name="noteId"
 								value="${note.noteId}"/>
-							<button type="submit" class="btn btn-primary">Delete</button>
+							<button type="submit" class="btn btn-dark">Delete</button>
 						</form>
 					</div>
 				</td>
